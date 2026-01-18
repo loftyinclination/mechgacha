@@ -70,8 +70,8 @@ def get_shop_info():
             today_shop_name = "Haydrian Mass Foundries"
             today_shop_description = "The cycling of the Core has brought the Mech Gacha to a sprawling industrial park, conveniently aligned with Ratoon's home. The facility's open-plan design and endless iron supply makes it ideal for constructing bulkier components of mechs, such as Body and Back parts. An open hangar before the Mech Gacha holds some freshly-forged mech parts for trade:"
         case 1: # Tuesday, arms & legs
-            today_shop_name = ""
-            today_shop_description = ""
+            today_shop_name = "The Workhouse"
+            today_shop_description = "The cycling of the Core has brought the Mech Gacha to The Workhouse. The sounds of exercise machines and milling machines greet you as you enter the massive gym/workshop complex. Power tools and power lifts, protein and pneumatics — this is where denizens of the Core, both mechanical and biological, go to build their perfect body. Looking up from their work, an unbelievably buff alien and a robot with distressingly many appendages hurry over, excited to show off and trade their latest mech-scale gains:"
         case 2: # Wednesday, cockpit & power
             today_shop_name = ""
             today_shop_description = ""
