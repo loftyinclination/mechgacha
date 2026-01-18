@@ -36,11 +36,7 @@ def get_todays_shop_pool():
         case 5: # Saturday
             shop_selection = get_all_parts_with_tags(parts_to_choose_from, ["bodyplan"])
         case 6: # Sunday
-            shop_selection = get_all_parts_with_tags(parts_to_choose_from, ["cosmetic"])
-            # Sunday shop also includes event items
-            for mech in event_mechs:
-                shop_selection.extend(mech.loot)
-            # shop_selection.extend(nullified.loot)
+            shop_selection = get_all_parts_with_tags(parts_to_choose_from, ["cosmetic","event"])
 
     return shop_selection
 
