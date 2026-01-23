@@ -73,14 +73,14 @@ def get_shop_info():
             today_shop_name = "The Workhouse"
             today_shop_description = "The cycling of the Core has brought the Mech Gacha to The Workhouse. The sounds of exercise machines and milling machines greet you as you enter the massive gym/workshop complex—this is where denizens of the Core both mechanical and biological go to build their perfect body. Looking up from their work, an unbelievably buff alien and a robot with distressingly many appendages hurry over, excited to show off their latest mech-scale gains:"
         case 2: # Wednesday, cockpit & power
-            today_shop_name = ""
-            today_shop_description = ""
+            today_shop_name = "Generator #56562 Waste Management Outlet"
+            today_shop_description = "The cycling of the Core has brought the Mech Gacha to a sprawling power plant. Facilities like this one help keep the entire Core running, with endless engines and management systems working in tandem to send power to wherever it's needed. A stockpile of Cockpit interfaces and Power systems no longer fit for use in the power grid, but perfect for retrofitting, lie before you:"
         case 3: # Thursday, weapons
             today_shop_name = "Screwloose Botlabs"
             today_shop_description = "The cycling of the Core has brought the Mech Gacha to the Combat Roblotics League campus, a compact arena intended for smaller RC robots to test their might. The Screwloose storefront holds a veritable arsenal of mech weaponry, optimized for winning through style, control, damage and aggression. Torus McGhee, eagerly manning the counter, revs with anticipation as you peruse your options:"
         case 4: # Friday, kits
-            today_shop_name = ""
-            today_shop_description = ""
+            today_shop_name = "C.E.N.T.E.R. Surplus"
+            today_shop_description = "The cycling of the Core has brought the Mech Gacha to C.E.N.T.E.R.'s DownTown HQ. The hub is a hive of activity, with recruits busy at work training for their future roles in reconnaissance, and often willing to help out with mech repairs after particularly fierce battles. Most useful, though, is the wide variety of utility Kits available, which have been upcycled for mech use as a part of project work:"
         case 5: # Saturday, bodyplans
             today_shop_name = "B.A.C.K. Market"
             today_shop_description = "The cycling of the Core has brought the Mech Gacha to the B.A.C.K. Archives. Towering shelves loom overhead, holding endless mech blueprints and component Manuals. A handwritten note, beside a curated set of blueprints on a stand, simply reads: \"You may have a copy of these Body Plans, in exchange for an appropriate donation of scrap. M.B.\":"
