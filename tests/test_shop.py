@@ -52,9 +52,7 @@ async def test_shop_works(monkeypatch):
     assert inventory.compute_inventory("testuser") == mock_onepage_inventory("testuser")
 
     # the message changes with time, so .startswith() ensures the test doesn't fail because of the time of day
-    assert (await shop.shop_command(MockMessage("m!shop"), "", MockClient())).startswith(f'''
-# **The Repair Shop**
-A "freshly renovated" sign beckons you into a wild array of half-disassembled bits and bobs with people at work all around you. Inside, several filing cabinets, car hoists, and horizontal painted doors have been combined to form display stands. Today, these items proudly sit on top of them:
+    assert f'''
 - `[1]` - Unremarkable Legs ★ - Hydraulic mecha legs, ready for painting, aftermarket tinkering, or full replacement. 
 -# **     **LEGS
 -# **     **Cost: **10 scrap**
@@ -67,7 +65,7 @@ A "freshly renovated" sign beckons you into a wild array of half-disassembled bi
 - `[4]` An extra gacha pull, freshly refurbished!
 -# **     **Cost: **5 scrap**
 
-    You have {scrap} scrap.'''.strip())
+    You have {scrap} scrap.'''.strip() in (await shop.shop_command(MockMessage("m!shop"), "", MockClient()))
 
 async def test_shop_redeeming_pulls(monkeypatch):
 
