@@ -1,7 +1,7 @@
 import datetime
 import random
 
-from gacha_tables import all_parts_list, shop_gacha
+from gacha_tables import all_parts_list, shop_gacha, shop_pullable_mechs
 from inventory import format_item, add_id_to_inventory
 import db
 import scrap
@@ -14,13 +14,17 @@ NUM_SCRAP_FOR_ONE_PULL = 5
 
 def get_all_parts_with_tags(itemlist, desired_tags):
     return list(filter(lambda item: any([tag in desired_tags for tag in item.tags]), itemlist))
+
+# collect all possible parts the shop can pull from in one list
+shop_pullable_parts = []
+for mech in shop_pullable_mechs:
+    shop_pullable_parts.extend(mech.loot)
             
 def get_todays_shop_pool():
     # this index will update whenever it is midnight in the timezone timezone_for_shopchange
     weekday_index = datetime.datetime.now(timezone_for_shopchange).weekday()
 
-
-    parts_to_choose_from = all_parts_list.values()# + shop_gacha.loot
+    parts_to_choose_from = shop_pullable_parts
 
     match weekday_index:
         case 0: # Monday
@@ -83,7 +87,7 @@ def get_shop_info():
             today_shop_description = "The cycling of the Core has brought the Mech Gacha to C.E.N.T.E.R.'s DownTown HQ. The hub is a hive of activity, with recruits busy at work training for their future roles in reconnaissance, and often willing to help out with mech repairs after particularly fierce battles. Most useful, though, is the wide variety of utility Kits available, which have been upcycled for mech use as a part of project work:"
         case 5: # Saturday, bodyplans
             today_shop_name = "B.A.C.K. Market"
-            today_shop_description = "The cycling of the Core has brought the Mech Gacha to the B.A.C.K. Archives. Towering shelves loom overhead, holding endless mech blueprints and component Manuals. A handwritten note, beside a curated set of blueprints on a stand, simply reads: \"You may have a copy of these Body Plans, in exchange for an appropriate donation of scrap. M.B.\":"
+            today_shop_description = "The cycling of the Core has brought the Mech Gacha to the B.A.C.K. Archives. Towering shelves loom overhead, holding endless mech blueprints and component Manuals. A handwritten note, beside a curated set of blueprints on a stand, simply reads: \"You may have a copy of these Body Plans, in exchange for an appropriate donation of scrap. M.B.\""
         case 6: # Sunday, special
             today_shop_name = "[NULLIFIED]"
             today_shop_description = "The cycling of the Core has brought the Mech Gacha to parts unknown. Suspended over blackest depths of the Pillars, a metal catwalk over the abyss holds an impromptu black market. Ethereal lighting illuminates the wares of the hooded shopkeeps. Trinkets and decals make up the majority of their collection, but a keen eye spots some worthwhile finds:"
