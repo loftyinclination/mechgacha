@@ -1,8 +1,11 @@
 import db
 from inventory import compute_inventory
-from gacha_tables import all_mechs
+from gacha_tables import all_mechs, event_mechs, shop_gacha
 from pulls import choose_mech_by_name, get_username, get_user_current_mechs, player_can_pull_from_mech
 from data_utils import get_playerdata
+
+
+can_see_progress_without_unlocking = event_mechs # + (shop_gacha,)
 
 async def progress_command(message, message_body):
     userid = message.author.id
@@ -24,7 +27,7 @@ async def progress_command(message, message_body):
     if mech_to_see_progress_for is None:
         return await message.channel.send(f"I don't know that mech. Maybe ya typoed their name")
 
-    if not player_can_pull_from_mech(mech_to_see_progress_for, playerdata):
+    if (not player_can_pull_from_mech(mech_to_see_progress_for, playerdata) and not (mech_to_see_progress_for in can_see_progress_without_unlocking)):
         return await message.channel.send(f"Ya dont have that mech yet! Ya got these mechs: {', '.join(player_mechs)}")
 
     inventory = compute_inventory(userid)

@@ -989,7 +989,7 @@ jkbenbot=Mech("jkbenbot",
 	KitItem("jkbenbot:flip_device","Flip Device","A strange machine capable of firing a beam that can conceptually invert any part. Usable once per fight, the results are always comedic.",["Whimsy"],stars=4),
 ])
 
-shop_gacha = Mech("shop",
+shop_gacha = Mech("shop_exclusive",
 			[
 				BodyItem("shop:3d_printed_chassis","3D-Printed Chassis","A chassis printed from recyclable plastic in the space of a few hours. Very expendable and replacable, allowing for easy and consistent repairs and modification.",["Classic"],stars=1),
 				BodyItem("shop:teddy_armour","Teddy Armour","The outer armour of your mech is stitched together from hundreds of adorable stuffed animals. Surely your opponent doesn't have the heart to hurt them...",["Whimsy"],stars=1),
@@ -1292,7 +1292,9 @@ ratoon_pullable_mechs = (bee, oneirocartographer, hillexed, st_yietus, triangle,
 
 event_mechs = (event_formal, event_fauna, event_labour, event_cryptid, event_discovery)
 event_gift_mech = event_discovery
-all_mechs = ratoon_pullable_mechs + (alto, shop_gacha, nullified, boss) + event_mechs
+
+shop_pullable_mechs = ratoon_pullable_mechs + (alto, shop_gacha, boss) + event_mechs
+all_mechs = shop_pullable_mechs + (nullified, )
 
 
 all_parts_list = {} # a dict of item id: item
