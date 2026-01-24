@@ -5,9 +5,6 @@ import asyncio
 import regeneration
 import db
 
-
-SCRAP_TRADEIN_THRESHOLD = 5
-
 def get_scrap(playerdata):
     return playerdata['scrap']
 
@@ -20,7 +17,7 @@ async def scrap_command(message, message_body, client):
     playerdata = db.get_player_data(user_id)
 
     if offered_item_name == "":
-        return await message.channel.send(f"To use this command, use `m!scrap <item name or ID>`. Items you scrap are destroyed and their stars are turned into scrap. Every {SCRAP_TRADEIN_THRESHOLD} stars' worth of scrap gives you extra pulls! \nYou have {playerdata['scrap']} scrap.")
+        return await message.channel.send(f"To use this command, use `m!scrap <item name or ID>`. Items you scrap are destroyed and their stars are turned into scrap. Use `m!shop` to trade your scrap for parts and extra pulls! \nYou have {playerdata['scrap']} scrap.")
         
     your_inventory = inventory.compute_inventory(user_id)
   
@@ -80,24 +77,11 @@ async def scrap_command(message, message_body, client):
     added_scrap = stars
     playerdata["scrap"] = existing_scrap + added_scrap
 
-    traded_in = False
-    while playerdata["scrap"] >= SCRAP_TRADEIN_THRESHOLD:
-        # trade in!
-        traded_in = True
-        playerdata["scrap"] -= SCRAP_TRADEIN_THRESHOLD
-
-        # free pulls!
-        playerdata["ratoon_pulls"] += 1/4
-        playerdata["mech_pulls"] += 1
-
     db.set_player_data(user_id, playerdata)
 
     inventory.remove_from_inventory_by_position(offered_item_index, user_id)
 
     star_character = "☆" if "event" in offered_item.tags else "★"
     stars_string = star_character * stars
-    if not traded_in:
-        await message.channel.send(f"You scrapped your {offered_item.name} {stars_string} and got {added_scrap} scrap. You now have {playerdata['scrap']} scrap.")
-    else:
-        await message.channel.send(f"You scrapped your {offered_item.name} {stars_string} and got {added_scrap} scrap - enough to salvage a day's worth of pulls! You now have {playerdata['scrap']} scrap.")
+    await message.channel.send(f"You scrapped your {offered_item.name} {stars_string} and got {added_scrap} scrap. You now have {playerdata['scrap']} scrap.")
         
