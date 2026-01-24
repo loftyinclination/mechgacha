@@ -36,11 +36,7 @@ def get_todays_shop_pool():
         case 5: # Saturday
             shop_selection = get_all_parts_with_tags(parts_to_choose_from, ["bodyplan"])
         case 6: # Sunday
-            shop_selection = get_all_parts_with_tags(parts_to_choose_from, ["cosmetic"])
-            # Sunday shop also includes event items
-            for mech in event_mechs:
-                shop_selection.extend(mech.loot)
-            # shop_selection.extend(nullified.loot)
+            shop_selection = get_all_parts_with_tags(parts_to_choose_from, ["cosmetic","event"])
 
     return shop_selection
 
@@ -67,6 +63,32 @@ def format_shop_listing(item_string, item_index, cost):
     return f"""- `[{item_index+1}]` {item_string}
 -# **     **Cost: **{cost} scrap**"""
 
+def get_shop_info():
+    weekday_index = datetime.datetime.now(timezone_for_shopchange).weekday()
+    match weekday_index:
+        case 0: # Monday, body & back
+            today_shop_name = "Haydrian Mass Foundries"
+            today_shop_description = "The cycling of the Core has brought the Mech Gacha to a sprawling industrial park, conveniently aligned with Ratoon's home. The facility's open-plan design and endless iron supply makes it ideal for constructing bulkier components of mechs, such as Body and Back parts. An open hangar before the Mech Gacha holds some freshly-forged mech parts for trade:"
+        case 1: # Tuesday, arms & legs
+            today_shop_name = "The Workhouse"
+            today_shop_description = "The cycling of the Core has brought the Mech Gacha to The Workhouse. The sounds of exercise machines and milling machines greet you as you enter the massive gym/workshop complex—this is where denizens of the Core both mechanical and biological go to build their perfect body. Looking up from their work, an unbelievably buff alien and a robot with distressingly many appendages hurry over, excited to show off their latest mech-scale gains:"
+        case 2: # Wednesday, cockpit & power
+            today_shop_name = "Generator #56562 Waste Management Outlet"
+            today_shop_description = "The cycling of the Core has brought the Mech Gacha to a sprawling power plant. Facilities like this one help keep the entire Core running, with endless engines and management systems working in tandem to send power to wherever it's needed. A stockpile of Cockpit interfaces and Power systems no longer fit for use in the power grid, but perfect for retrofitting, lie before you:"
+        case 3: # Thursday, weapons
+            today_shop_name = "Screwloose Botlabs"
+            today_shop_description = "The cycling of the Core has brought the Mech Gacha to the Combat Roblotics League campus, a compact arena intended for smaller RC robots to test their might. The Screwloose storefront holds a veritable arsenal of mech weaponry, optimized for winning through style, control, damage and aggression. Torus McGhee, eagerly manning the counter, revs with anticipation as you peruse your options:"
+        case 4: # Friday, kits
+            today_shop_name = "C.E.N.T.E.R. Surplus"
+            today_shop_description = "The cycling of the Core has brought the Mech Gacha to C.E.N.T.E.R.'s DownTown HQ. The hub is a hive of activity, with recruits busy at work training for their future roles in reconnaissance, and often willing to help out with mech repairs after particularly fierce battles. Most useful, though, is the wide variety of utility Kits available, which have been upcycled for mech use as a part of project work:"
+        case 5: # Saturday, bodyplans
+            today_shop_name = "B.A.C.K. Market"
+            today_shop_description = "The cycling of the Core has brought the Mech Gacha to the B.A.C.K. Archives. Towering shelves loom overhead, holding endless mech blueprints and component Manuals. A handwritten note, beside a curated set of blueprints on a stand, simply reads: \"You may have a copy of these Body Plans, in exchange for an appropriate donation of scrap. M.B.\":"
+        case 6: # Sunday, special
+            today_shop_name = "[NULLIFIED]"
+            today_shop_description = "The cycling of the Core has brought the Mech Gacha to parts unknown. Suspended over blackest depths of the Pillars, a metal catwalk over the abyss holds an impromptu black market. Ethereal lighting illuminates the wares of the hooded shopkeeps. Trinkets and decals make up the majority of their collection, but a keen eye spots some worthwhile finds:"
+
+    return today_shop_name, today_shop_description
 
 def shop_cost(item):
 
@@ -97,6 +119,7 @@ def shop_cost(item):
 
 def view_shop(user_scrap="a competing standard (not yet accepted) of"):
     shop_choices = get_shop_items()
+    shop_name, shop_description = get_shop_info()
 
     now = datetime.datetime.now(timezone_for_shopchange)
     t = datetime.time(23, 59, 59, tzinfo=timezone_for_shopchange)
@@ -113,8 +136,8 @@ def view_shop(user_scrap="a competing standard (not yet accepted) of"):
 
     newline = '\n'
 
-    return f"""# **The Repair Shop**
-A "freshly renovated" sign beckons you into a wild array of half-disassembled bits and bobs with people at work all around you. Inside, several filing cabinets, car hoists, and horizontal painted doors have been combined to form display stands. Today, these items proudly sit on top of them:
+    return f"""# **{shop_name}**
+{shop_description}
 {newline.join([
     format_item_listing(item, i) 
     for i, item in enumerate(shop_choices)])}
