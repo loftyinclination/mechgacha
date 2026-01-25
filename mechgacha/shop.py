@@ -47,13 +47,13 @@ def get_todays_shop_pool():
 def get_shop_items():
     # Seed the RNG using today's date. This means when the day changes, the 3 random items will change too
 
-    seed = "Shop seeded by day:" + str(datetime.datetime.now(timezone_for_shopchange).today().date())
+    seed = "Shop seeded by day:" + str(datetime.datetime.now(timezone_for_shopchange).date())
     shop_rng = random.Random(seed)
 
     num_shop_items = 3
 
     shop_pool = get_todays_shop_pool() # changes based on weekday
-    return shop_rng.choices(shop_pool, k=num_shop_items)
+    return shop_rng.sample(shop_pool, k=num_shop_items)
 
 
 def format_item_listing(item, item_index):
