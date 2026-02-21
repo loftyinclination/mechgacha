@@ -148,7 +148,7 @@ cheshire = Mech("cheshire",
     BackItem("cheshire:scorpions_talent","Scorpion's Talent","A massive chitinous tail tipped with a wicked barb. Designed to inject corrosive or pressurized gas directly into the enemy's cockpit.", stars=3),	
     BackItem("cheshire:back_mounted_turret","Back Mounted Turret","A platform for mounting ranged weapons on the back of your mech. Options include a railgun, laser rifle, or catapult.", stars=3),
     KitItem("cheshire:monologue_protector","Monologue Protector","This device provides invincible plot armor for exactly 1 monologue during a mech fight. Additional (or needlessly long) monologues are not covered by this protection.", stars=3),	
-    PowerItem("cheshire:amber_heart_tier_2","Amber Heart","This strange heart of carved amber beats in time with your own, and pumps a thick, dark ichor into your mech, powering it. The blood in your veins pulses euphorically when near it.", stars=5),
+    PowerItem("cheshire:amber_heart_tier_2","Ichor Heart","This strange heart of carved amber beats in time with your own, and pumps a thick, dark ichor into your mech, powering it. The blood in your veins pulses euphorically when near it.", stars=5),
 ]
 )
 
@@ -347,7 +347,7 @@ cheesesnack = Mech("cheesesnack",
     WeaponItem("cheesesnack:pick_mattock","Pick Mattock","Warfare never really advanced beyond the need for earthworks and trenches. Pilots have discovered that the titanium pick on this tool pierces armor as easily as it does rock and stone.", stars=3),
     CosmeticItem("cheesesnack:branch_camoflage","Branch Camoflage","Tree limbs have been crudely attached to the shoulders. Enemy spotters might mistake this mech for a particularly mobile tree."),
     BodyPlanItem("cheesesnack:centipede_mode","Centipede Mode","An adapter system that allows the mech to crawl on many small legs", {"legs": 4}),
-    ArmsItem("cheesesnack:five_star_roper_manipulators","Roper Manipulators","Originally for clearing minefields, each \"arm\" consists of four moveable tentacles. An experimental upgrade allows them to act completely independently of the mech; pilots can snatch weapons from afar, throw individual tentacles like boluses, or interlink tentacles together into one long tentacle.", stars=5),
+    ArmsItem("cheesesnack:five_star_roper_manipulators","Roper Manipulators EX","Originally for clearing minefields, each \"arm\" consists of four moveable tentacles. An experimental upgrade allows them to act completely independently of the mech; pilots can snatch weapons from afar, throw individual tentacles like boluses, or interlink tentacles together into one long tentacle.", stars=5),
     CosmeticItem("cheesesnack:superpositional_jacket","Superpositional Jacket","The downside of reversible jackets was that you could only wear one side at a time. This is no longer the case."),
 ]
 )
