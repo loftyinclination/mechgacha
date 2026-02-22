@@ -1,6 +1,6 @@
 import db
 from inventory import compute_inventory
-from gacha_tables import all_mechs, event_mechs, shop_gacha
+from gacha_tables import all_mechs, ratoon_pullable_mechs, event_mechs, shop_gacha
 from pulls import choose_mech_by_name, get_username, get_user_current_mechs, player_can_pull_from_mech
 from data_utils import get_playerdata
 
@@ -21,6 +21,11 @@ async def progress_command(message, message_body):
 
     if requested_mech == "":
         return await message.channel.send(f"\nUse m!progress <mech> to see your progress through their list! You can see progress for: {', '.join(player_mechs)}.")
+
+    if requested_mech.lower() == "ratoon":
+        number_of_mechs_user_doesnt_have = sum(1 for mech in ratoon_pullable_mechs if mech.username in player_mechs)
+
+        return await message.channel.send(f"\nYou have {number_of_mechs_user_doesnt_have} of {len(ratoon_pullable_mechs)}")
 
     mech_to_see_progress_for: 'gacha_mechanics.Mech' = choose_mech_by_name(all_mechs, requested_mech)
 

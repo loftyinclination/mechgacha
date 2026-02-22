@@ -130,3 +130,15 @@ Use m!pull <mech> to pull from their list! You can pull from: loading, st_yietus
     monkeypatch.setattr(db, "get_player_data", lambda userid: mock_playerdata(userid, mech_pulls=-1))
     await bot.handle_commands(MockMessage("m!pull loading"))
     assert "You are out of pulls!" == last_bot_message
+
+async def test_progress_ratoon_message(monkeypatch):
+    import db
+    monkeypatch.setattr(db, "get_inventory_data", mock_onepage_inventory)
+    monkeypatch.setattr(db, "get_player_data", lambda userid: mock_playerdata(userid, mech_pulls=0))
+    monkeypatch.setattr(db, "update_data", lambda db_name,key,value: 5)
+
+    import bot
+    await bot.handle_commands(MockMessage("m!progress ratoon"))
+
+    from gacha_tables import ratoon_pullable_mechs
+    assert last_bot_message == f"\nYou have 2 of {len(ratoon_pullable_mechs)}"
