@@ -148,7 +148,7 @@ cheshire = Mech("cheshire",
     BackItem("cheshire:scorpions_talent","Scorpion's Talent","A massive chitinous tail tipped with a wicked barb. Designed to inject corrosive or pressurized gas directly into the enemy's cockpit.", stars=3),	
     BackItem("cheshire:back_mounted_turret","Back Mounted Turret","A platform for mounting ranged weapons on the back of your mech. Options include a railgun, laser rifle, or catapult.", stars=3),
     KitItem("cheshire:monologue_protector","Monologue Protector","This device provides invincible plot armor for exactly 1 monologue during a mech fight. Additional (or needlessly long) monologues are not covered by this protection.", stars=3),	
-    PowerItem("cheshire:amber_heart_tier_2","Amber Heart","This strange heart of carved amber beats in time with your own, and pumps a thick, dark ichor into your mech, powering it. The blood in your veins pulses euphorically when near it.", stars=5),
+    PowerItem("cheshire:amber_heart_tier_2","Ichor Heart","This strange heart of carved amber beats in time with your own, and pumps a thick, dark ichor into your mech, powering it. The blood in your veins pulses euphorically when near it.", stars=5),
 ]
 )
 
@@ -347,7 +347,7 @@ cheesesnack = Mech("cheesesnack",
     WeaponItem("cheesesnack:pick_mattock","Pick Mattock","Warfare never really advanced beyond the need for earthworks and trenches. Pilots have discovered that the titanium pick on this tool pierces armor as easily as it does rock and stone.", stars=3),
     CosmeticItem("cheesesnack:branch_camoflage","Branch Camoflage","Tree limbs have been crudely attached to the shoulders. Enemy spotters might mistake this mech for a particularly mobile tree."),
     BodyPlanItem("cheesesnack:centipede_mode","Centipede Mode","An adapter system that allows the mech to crawl on many small legs", {"legs": 4}),
-    ArmsItem("cheesesnack:five_star_roper_manipulators","Roper Manipulators","Originally for clearing minefields, each \"arm\" consists of four moveable tentacles. An experimental upgrade allows them to act completely independently of the mech; pilots can snatch weapons from afar, throw individual tentacles like boluses, or interlink tentacles together into one long tentacle.", stars=5),
+    ArmsItem("cheesesnack:five_star_roper_manipulators","Roper Manipulators EX","Originally for clearing minefields, each \"arm\" consists of four moveable tentacles. An experimental upgrade allows them to act completely independently of the mech; pilots can snatch weapons from afar, throw individual tentacles like boluses, or interlink tentacles together into one long tentacle.", stars=5),
     CosmeticItem("cheesesnack:superpositional_jacket","Superpositional Jacket","The downside of reversible jackets was that you could only wear one side at a time. This is no longer the case."),
 ]
 )
@@ -513,7 +513,7 @@ ditto = Mech("ditto",
 hal2000 = Mech("hal2000", 
 [   
     PowerItem("hal2000:the_beating_hearts_of_one","The Beating Hearts of One Thousand Worms","The heartbeats of these still-live worms are amplified and converted into electrical energy for the mech to use. They yearn for the sweet taste of the earth, and will give your mech a power boost to its weapon systems relative to how close your mech is to dirt.", ["Beast", "Terra"], stars=4),
-    PowerItem("hal2000:cote_blue_flame","Cot3's Blue-Flame Generator","A powerful generator that uses a special blue flame to supercharge the mech, but leads to an odd kind of smoke build-up on the inside that cannot be ventilated normally.", ["Blaseball", "Pyro"], stars=2),
+    PowerItem("hal2000:cote_blue_flame","Blue-Flame Generator","A powerful generator that uses a special blue flame to supercharge the mech, but leads to an odd kind of smoke build-up on the inside that cannot be ventilated normally.", ["Pyro"], stars=2),
     LegsItem("hal2000:dimensionally","Dimensionally Disjointed Walkers","These standard-issue mech legs have been dimensionally modified so that every joint below the hip is connected but stored in an alternate dimension. Makes you hard to hit below the waist.", ["Anomalous", "Classic"]),
     LegsItem("hal2000:kelvin_drumset","Kelvin's Mechanical Drumset","A reproduction of Kelvin's drumset/spider leg set-up, properly sized for usage as a set of mech legs!", ["Blaseball", "Classic"], stars=2),
     ArmsItem("hal2000:cobbled_scrap_arms","Glistening Ichor Infectors","After much use, an odd oil is dripping out of these Glistening Platinum Punchers. They’re still durable and lithe, but any enemy mech that touches the ichor will find their computer systems slowly corrupted and the mech’s operating fluid infected by ichor. Maybe these were scrapped for a reason...", ["Anomalous", "Gooey"], stars=4),
