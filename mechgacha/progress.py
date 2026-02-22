@@ -1,5 +1,5 @@
 import db
-from inventory import compute_inventory
+from inventory import compute_inventory, item_already_in_inventory
 from gacha_tables import all_mechs, ratoon_pullable_mechs, event_mechs, shop_gacha
 from pulls import choose_mech_by_name, get_user_current_mechs, player_can_pull_from_mech
 from data_utils import get_playerdata
@@ -26,6 +26,19 @@ async def progress_command(message, message_body):
         number_of_mechs_user_doesnt_have = sum(1 for mech in ratoon_pullable_mechs if mech.username in player_mechs)
 
         return await message.channel.send(f"\nYou have {number_of_mechs_user_doesnt_have} of {len(ratoon_pullable_mechs)}")
+
+    if requested_mech.lower() == "all":
+        inventory = compute_inventory(userid)
+
+        sub_array = [f"## {username}'s global progress on the gacha pool:"]
+        for mech in ratoon_pullable_mechs:
+            if mech.username not in player_mechs:
+                continue
+            sub_array.append(f"**{mech.username.lower()}**")
+            number_of_unique_items_owned = sum(1 for item in mech.loot if item_already_in_inventory(item, inventory))
+            sub_array.append(f"> {number_of_unique_items_owned}/{len(mech.loot)}")
+
+        return await message.channel.send("\n".join(sub_array))
 
     mech_to_see_progress_for: 'gacha_mechanics.Mech' = choose_mech_by_name(all_mechs, requested_mech)
 

@@ -142,3 +142,18 @@ async def test_progress_ratoon_message(monkeypatch):
 
     from gacha_tables import ratoon_pullable_mechs
     assert last_bot_message == f"\nYou have 2 of {len(ratoon_pullable_mechs)}"
+
+async def test_progress_all_message(monkeypatch):
+    import db
+    monkeypatch.setattr(db, "get_inventory_data", mock_onepage_inventory)
+    monkeypatch.setattr(db, "get_player_data", lambda userid: mock_playerdata(userid, mech_pulls=0))
+    monkeypatch.setattr(db, "update_data", lambda db_name,key,value: 5)
+
+    import bot
+    await bot.handle_commands(MockMessage("m!progress all"))
+    assert last_bot_message == """
+## testname's global progress on the gacha pool:
+**st_yietus**
+> 2/24
+**loading**
+> 2/10""".strip()
