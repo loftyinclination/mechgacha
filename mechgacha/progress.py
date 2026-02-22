@@ -4,7 +4,7 @@ from gacha_tables import all_mechs, ratoon_pullable_mechs, event_mechs, shop_gac
 from pulls import choose_mech_by_name, get_user_current_mechs, player_can_pull_from_mech
 from data_utils import get_playerdata
 
-
+PROGRESS_BAR_LENGTH = 12
 can_see_progress_without_unlocking = event_mechs # + (shop_gacha,)
 
 async def progress_command(message, message_body):
@@ -36,7 +36,10 @@ async def progress_command(message, message_body):
                 continue
             sub_array.append(f"**{mech.username.lower()}**")
             number_of_unique_items_owned = sum(1 for item in mech.loot if item_already_in_inventory(item, inventory))
-            sub_array.append(f"> {number_of_unique_items_owned}/{len(mech.loot)}")
+            number_of_possible_items = len(mech.loot)
+            increments = (number_of_unique_items_owned * PROGRESS_BAR_LENGTH) // len(mech.loot)
+
+            sub_array.append(f"> '[{increments * '#'}{(PROGRESS_BAR_LENGTH - increments) * '-'}]' {number_of_unique_items_owned}/{len(mech.loot)}")
 
         return await message.channel.send("\n".join(sub_array))
 
