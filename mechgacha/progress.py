@@ -41,6 +41,9 @@ async def progress_command(message, message_body):
             number_of_unique_items_owned = sum(1 for item in mech.loot if item_already_in_inventory(item, inventory))
             number_of_possible_items = len(mech.loot)
             increments = (number_of_unique_items_owned * PROGRESS_BAR_LENGTH) // len(mech.loot)
+            # tick the progress bar at least once if the user has at least one item
+            if increments == 0 and number_of_unique_items_owned != 0:
+                increments = 1
 
             sub_array.append(f"> `[{increments * '#'}{(PROGRESS_BAR_LENGTH - increments) * '-'}]` {number_of_unique_items_owned}/{len(mech.loot)}")
 
