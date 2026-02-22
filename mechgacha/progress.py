@@ -23,9 +23,12 @@ async def progress_command(message, message_body):
         return await message.channel.send(f"\nUse m!progress <mech> to see your progress through their list! You can see progress for: {', '.join(player_mechs)}.")
 
     if requested_mech.lower() == "ratoon":
-        number_of_mechs_user_doesnt_have = sum(1 for mech in ratoon_pullable_mechs if mech.username in player_mechs)
+        number_of_mechs_user_doesnt_have = sum(1 for mech in ratoon_pullable_mechs if mech.username not in player_mechs)
 
-        return await message.channel.send(f"\nYou have {number_of_mechs_user_doesnt_have} of {len(ratoon_pullable_mechs)}")
+        if number_of_mechs_user_doesnt_have == 0:
+            return await message.channel.send(f"\nYou have all of the mechs!")
+        else:
+            return await message.channel.send(f"\nYou have {number_of_mechs_user_doesnt_have} mech{'s' if number_of_mechs_user_doesnt_have != 1 else ''} remaining to pull")
 
     if requested_mech.lower() == "all":
         inventory = compute_inventory(userid)
