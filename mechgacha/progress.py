@@ -42,7 +42,7 @@ async def progress_command(message, message_body):
             number_of_possible_items = len(mech.loot)
             increments = (number_of_unique_items_owned * PROGRESS_BAR_LENGTH) // len(mech.loot)
 
-            sub_array.append(f"> '[{increments * '#'}{(PROGRESS_BAR_LENGTH - increments) * '-'}]' {number_of_unique_items_owned}/{len(mech.loot)}")
+            sub_array.append(f"> `[{increments * '#'}{(PROGRESS_BAR_LENGTH - increments) * '-'}]` {number_of_unique_items_owned}/{len(mech.loot)}")
 
         return await message.channel.send("\n".join(sub_array))
 
