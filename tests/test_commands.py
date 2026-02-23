@@ -154,6 +154,6 @@ async def test_progress_all_message(monkeypatch):
     assert last_bot_message == """
 ## testname's global progress on the gacha pool:
 **st_yietus**
-> '[#-----------]' 2/24
+> `[#-----------]` 2/24
 **loading**
-> '[##----------]' 2/10""".strip()
+> `[##----------]` 2/10""".strip()
