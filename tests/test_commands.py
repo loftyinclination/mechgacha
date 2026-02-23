@@ -141,7 +141,7 @@ async def test_progress_ratoon_message(monkeypatch):
     await bot.handle_commands(MockMessage("m!progress ratoon"))
 
     from gacha_tables import ratoon_pullable_mechs
-    assert last_bot_message == f"\nYou have 2 of {len(ratoon_pullable_mechs)}"
+    assert last_bot_message == f"\nYou have {len(ratoon_pullable_mechs) - 2} mechs remaining to pull"
 
 async def test_progress_all_message(monkeypatch):
     import db
